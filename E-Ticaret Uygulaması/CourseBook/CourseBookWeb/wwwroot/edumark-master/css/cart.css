@@ -1,0 +1,63 @@
+.container {
+    padding-top: 50px;
+}
+
+.card {
+    margin-bottom: 50px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+.card-header {
+    border-radius: 10px 10px 0 0;
+}
+
+    .card-header h3 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+
+
+.list-group-item {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.text-info {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.continue-shopping-btn,
+.summary-btn {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.continue-shopping-btn {
+    background: #218e16;
+    transition: background 0.5s ease;
+}
+
+.summary-btn {
+    background: linear-gradient(to right, #58a58a, #218e16);
+    transition: background 0.5s ease;
+}
+
+
+
+

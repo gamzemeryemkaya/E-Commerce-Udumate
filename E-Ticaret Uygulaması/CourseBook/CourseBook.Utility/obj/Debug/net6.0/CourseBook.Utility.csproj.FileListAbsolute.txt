@@ -1,0 +1,12 @@
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\bin\Debug\net6.0\CourseBook.Utility.deps.json
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\bin\Debug\net6.0\CourseBook.Utility.dll
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\bin\Debug\net6.0\CourseBook.Utility.pdb
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\CourseBook.Utility.csproj.AssemblyReference.cache
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\CourseBook.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\CourseBook.Utility.AssemblyInfoInputs.cache
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\CourseBook.Utility.AssemblyInfo.cs
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\CourseBook.Utility.csproj.CoreCompileInputs.cache
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\CourseBook.Utility.dll
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\refint\CourseBook.Utility.dll
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\CourseBook.Utility.pdb
+C:\Users\gamze\OneDrive\Masaüstü\E-Ticaret Uygulaması\CourseBook\CourseBook.Utility\obj\Debug\net6.0\ref\CourseBook.Utility.dll

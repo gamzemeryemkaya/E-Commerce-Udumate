@@ -1,0 +1,60 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    Layout = "~/Views/Shared/_WebLayout.cshtml";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+@*<h3>@ViewData["Title"]</h3>*@
+<partial name="_StatusMessage" for="StatusMessage" />
+
+
+<!-- Sayfa içeriği buraya gelecek -->
+
+<div class="main-content p-5">
+    <div class="container p-5">
+        <div class="header-body text-center mb-7">
+            <div class="row justify-content-center">
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt--8 pb-5">
+        <div class="row justify-content-center p-5">
+            <div class="col-md-3">
+                @{
+                    await Html.RenderPartialAsync("_ManageNav");
+                }
+            </div>
+            <div class="col-lg-7 col-md-7" style=" box-shadow: 0px 0px 10px #ccc; padding: 15px;">
+                <div class="card border-0">
+                    <div class="card-body px-lg-5 py-lg-5">
+
+                        <div class="col-md-9">
+                            <form id="profile-form" method="post">
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-floating">
+                                    <input asp-for="Username" class="form-control" disabled />
+                                    <label asp-for="Username" class="form-label"></label>
+                                </div>
+                                <div class="form-floating">
+                                    <input asp-for="Input.PhoneNumber" class="form-control" />
+                                    <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                </div>
+                                <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

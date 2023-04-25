@@ -1,0 +1,30 @@
+.btn-red {
+    background: linear-gradient(to bottom, #FFC4C4, #cc0000);
+    transition: background 0.5s ease;
+    color: #fff;
+}
+
+.btn-blue {
+    background: linear-gradient(to right, #87bdd8, #428bca);
+    transition: background 0.5s ease;
+    color: #fff;
+}
+
+.btn-green {
+    background: linear-gradient(to right, #58a58a, #218e16);
+    transition: background 0.5s ease;
+    color: #fff;
+}
+
+.btn-orange {
+    background: linear-gradient(to right, #FFA07A, #FF4500);
+    transition: background 0.5s ease;
+    color: #fff;
+}
+
+.turquoise {
+    background: linear-gradient(to right, #7FFFD4, #00CED1);
+    transition: background 0.5s ease;
+    color: #fff;
+}
+

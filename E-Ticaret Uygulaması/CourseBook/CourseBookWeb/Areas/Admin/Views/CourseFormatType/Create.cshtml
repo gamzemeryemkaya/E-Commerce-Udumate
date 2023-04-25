@@ -1,0 +1,35 @@
+﻿@model CourseFormatType
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-body">
+            <h2 class="text-primary">Create Course Format </h2>
+            <hr />
+            <br />
+            @*   <div asp-validation-summary="All"></div>*@
+            <form method="post">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+                <a asp-controller="CourseFormatType" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                    Back to List
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+

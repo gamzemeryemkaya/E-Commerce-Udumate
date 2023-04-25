@@ -1,0 +1,139 @@
+﻿
+@model CourseBook.Models.ViewModels.ProductViewModels
+<div class="container ">
+
+    <div class="row">
+        <div class="col-10">
+
+
+            <div class="card shadow row p-3 mt-4">
+                <div class="card-body" style="border: 2px solid #ccc; box-shadow: 0px 0px 10px #ccc; padding: 15px;">
+                    <br />
+                    @*   <div asp-validation-summary="All"></div>*@
+                    <form method="post" asp-action="Upsert" enctype="multipart/form-data">
+                        <input asp-for="Product.Id" hidden />
+                        <input asp-for="Product.ImageUrl" hidden />
+                        <div class="col-12 pb-2">
+                            <h3 class="card-title text-primary">@(Model.Product.Id != 0 ? "Update" : "Create")  Product</h3>
+                            <hr />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Product.Title"></label>
+                            <input asp-for="Product.Title" class="form-control" />
+                            <span asp-validation-for="Product.Title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Product.Description"></label>
+                            <textarea asp-for="Product.Description" rows="3" class="form-control"></textarea>
+                            <span asp-validation-for="Product.Description" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-6">
+                                <label asp-for="Product.InstructorId"></label>
+                                <input asp-for="Product.InstructorId" class="form-control" />
+                                <span asp-validation-for="Product.InstructorId" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="Product.Instructor"></label>
+                                <input asp-for="Product.Instructor" class="form-control" />
+                                <span asp-validation-for="Product.Instructor" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-6">
+                                <label asp-for="Product.ListPrice"></label>
+                                <input asp-for="Product.ListPrice" class="form-control" />
+                                <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="Product.Price"></label>
+                                <input asp-for="Product.Price" class="form-control" />
+                                <span asp-validation-for="Product.Price" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-6">
+                                <label>Product Coupon</label>
+                                <input asp-for="Product.Price50" class="form-control" />
+                                <span asp-validation-for="Product.Price50" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label>Product Gift</label>
+                                <input asp-for="Product.Price100" class="form-control" />
+                                <span asp-validation-for="Product.Price100" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Product.ImageUrl"></label>
+                            <input type="file" id="uploadBox" name="file" class="form-control" />
+                        </div>
+                        <div class="mb-3 col-6">
+                            <label asp-for="Product.CategoryId"></label>
+                            <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-select form-control">
+                                <option disabled selected>--Select Category--</option>
+                            </select>
+                            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3 col-6">
+                            <label for="CourseFormatTypeId">Course Format Type</label>
+                            <select id="CourseFormatTypeId" asp-for="Product.CourseFormatTypeId" asp-items="@Model.CourseFormatTypeList" class="form-select form-control">
+                                <option disabled selected>--Select Course Format Type--</option>
+                            </select>
+                            <span asp-validation-for="Product.CourseFormatTypeId" class="text-danger"></span>
+                        </div>
+                        <div class="col-12">
+
+                            @if (Model.Product.Id != 0)
+                            {
+                                <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+                            }
+                            else
+                            {
+                                <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Create</button>
+                            }
+
+                            <a asp-controller="Product" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                                Back to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-2 pt-4">
+            <img src="@Model.Product.ImageUrl"
+                 width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+        </div>
+
+</div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+        });
+
+        function ValidateInput() {
+            if (document.getElementById("uploadBox").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please upload an Image!',
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
+

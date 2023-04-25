@@ -1,0 +1,29 @@
+﻿@model int
+@{
+    Layout = "~/Views/Shared/_WebLayout.cshtml";
+    ViewData["Title"] = "Order Confirmation";
+}
+<div class="main-content p-5">
+    <div class="container p-5">
+        <div class="header-body text-center mb-7">
+            <div class="row justify-content-center">
+            </div>
+        </div>
+    </div>
+    <div class="container mt--8 pb-5">
+        <div class="row justify-content-center p-5">
+<div class="container row pt-4">
+    <div class="col-12 text-center">
+        <h1 class="text-primary text-center">Order Successful!</h1>
+        Your Order Number is :@Model.ToString() <br /><br />
+        <img src="~/images/illustration-thank-you-letter (1).jpg" width="65%" />
+    </div>
+    <div class="col-12 text-center" style="color:maroon">
+        <br />
+       Thank you, your order has been confirmed and you can access the training! <br />
+
+    </div>
+</div>
+        </div>
+    </div>
+</div>

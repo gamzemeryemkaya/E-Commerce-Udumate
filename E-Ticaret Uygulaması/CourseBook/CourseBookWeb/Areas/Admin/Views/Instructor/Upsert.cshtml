@@ -1,0 +1,82 @@
+﻿@model Instructor
+<div class="container ">
+
+    <div class="row">
+        <div class="col-10">
+
+
+            <div class="card shadow row p-3 mt-4">
+                <div class="card-body" style="border: 2px solid #ccc; box-shadow: 0px 0px 10px #ccc; padding: 15px;">
+                    <br />
+                    @*   <div asp-validation-summary="All"></div>*@
+                    <form method="post" asp-action="Upsert" enctype="multipart/form-data">
+                       <input asp-for="Id" hidden />
+                        <div class="col-12 pb-2">
+                            <h3 class="card-title text-primary">@(Model.Id != 0 ? "Update" : "Create") Instructor</h3>
+                            <hr />
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber"></label>
+                            <textarea asp-for="PhoneNumber" rows="3" class="form-control"></textarea>
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3 row">
+                            <div class="col-6">
+                                <label asp-for="StreetAddress"></label>
+                                <input asp-for="StreetAddress" class="form-control" />
+                                <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="City"></label>
+                                <input asp-for="City" class="form-control" />
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 row">
+                            <div class="col-6">
+                                <label asp-for="State"></label>
+                                <input asp-for="State" class="form-control" />
+                                <span asp-validation-for="State" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="PostalCode"></label>
+                                <input asp-for="PostalCode" class="form-control" />
+                                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+
+                            @if (Model.Id != 0)
+                            {
+                                <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+                            }
+
+                            <a asp-controller="Instructor" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                                Back to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+</div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

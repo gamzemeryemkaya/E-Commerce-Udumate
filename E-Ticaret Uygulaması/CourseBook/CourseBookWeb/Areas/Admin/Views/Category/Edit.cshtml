@@ -1,0 +1,40 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-body">
+            <h3 class="card-title text-primary">Edit Category</h3>
+            <hr />
+            <br />
+            @*   <div asp-validation-summary="All"></div>*@
+            <form method="post" asp-action="Edit">
+                <div class="form-group">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DisplayOrder"></label>
+                    <input asp-for="DisplayOrder" class="form-control" />
+                    <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:150px">Update</button>
+                <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                    Back to List
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+
+

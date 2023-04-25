@@ -1,0 +1,38 @@
+﻿@*@model IEnumerable<CourseBook.Models.Course>
+
+  {
+<div class="courses_details_banner">
+    <div class="container">
+        <div class="row">
+            @foreach (var obj in Model)
+            {
+            <div class="col-xl-6">
+                <div class="course_text">
+                    <h3>@obj.Title</h3>
+                    <div class="prise">
+                            <span class="inactive">₺@obj.Price.ToString("0.00")</span>
+                            <span class="active"> ₺@obj.CampaignPrice.ToString("0.00")</span>
+                    </div>
+                    <div class="rating">
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <span>(@obj.Rating)</span>
+                    </div>
+                    <div class="hours">
+                        <div class="video">
+                            <div class="single_video">
+                                <i class="fa fa-clock-o"></i> <span>@obj.TotalVideo</span>
+                            </div>
+                            <div class="single_video">
+                                <i class="fa fa-play-circle-o"></i> <span>@obj.CourseTime</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>*@
+
+

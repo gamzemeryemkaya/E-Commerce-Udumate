@@ -1,0 +1,226 @@
+﻿@model CourseBook.Models.ViewModels.IndexViewModel
+
+@{
+    ViewData["Title"] = "CourseDetails";
+    Layout = "~/Views/Shared/_CourseDetails.cshtml";
+}
+
+<!-- bradcam_area_start -->
+<input hidden asp-for="ProductId" />
+<div class="courses_details_banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="course_text">
+                    <h3>@Model.Products.Title</h3>
+                    <div class="prise">
+                        <span class="inactive">₺@Model.Products.ListPrice.ToString("0.00")</span>
+                        <span class="active"> ₺@Model.Products.Price.ToString("0.00")</span>
+                    </div>
+                     @foreach (var detail in Model.Courses)
+                     {
+                    <div class="rating">
+                            <i class="flaticon-mark-as-favorite-star"></i>
+                        <span>@detail.Rating</span>
+                    </div>
+                    <div class="hours">
+                        <div class="video">
+                            <div class="single_video">
+                                <i class="fa fa-clock-o"></i> <span>@detail.TotalVideo</span>
+                            </div>
+                            <div class="single_video">
+                                <i class="fa fa-play-circle-o"></i> <span>@detail.CourseTime</span>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@foreach (var content in Model.Courses)
+{
+<!-- bradcam_area_end -->
+            <div class="courses_details_info">
+                <div class="container">
+                    <div class="row">
+               
+                        <div class="col-xl-7 col-lg-7">
+                            <div class="single_courses">
+                    
+                               <h3>@content.Title1</h3>
+                                <p>@content.Detail</p>
+                                <h3 class="second_title">@content.Title2</h3>
+                            </div>
+                            <div class="outline_courses_info">
+                                <div id="accordion">
+                                    <div class="card">
+                                        <div class="card-header" id="headingTwo">
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                    <i class="flaticon-question"></i> @content.InfoTitle
+                                                </button>
+                                            </h5>
+                                        </div>
+                                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                            <div class="card-body">
+                                               @content.InfoContent
+                                            </div>
+                                        </div>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                          <div class="card">
+                        <div class="section-title position-relative text-center p-5">
+                            <h1 class="font-secondary display-4">Course Documentation</h1>
+                        </div>
+                     
+                        <div id="button-container p-5">
+                            <button id="view-pdf-button">View Pdf</button>
+                            <button id="close-pdf-button">Close</button>
+                        </div>
+                        <br>
+                        <!-- PDF görüntüleyicinin gösterileceği yer için bir div oluşturun -->
+                        <div id="pdf-viewer" p-5>
+                            <script>
+                                const pdfUrl = "@content.PdfUrl";
+                            </script>
+                        </div>
+                            </div>
+                    
+                        </div>
+
+            <div class="col-xl-5 col-lg-5">
+                <div class="courses_sidebar">
+                    <div class="video_thumb card">
+                        <img src="@content.ImageUrl" alt="">
+                            <a class="popup-video" href="@content.VideoUrl">
+                            <i class="fa fa-play"></i>
+                        </a>
+                    </div>
+                    <div class="author_info">
+                        <div class="auhor_header">
+                            <div class="thumb">
+                                <img src="@content.InstructorImage" alt="">
+                            </div>
+                            <div class="name">
+                                <h3>@content.InstructorName</h3>
+                                <p>@content.InstructorStatus</p>
+                            </div>
+                        </div>
+                        <p class="text_info">
+                           @content.InstructorDescription
+                        </p>
+                        <ul>
+                            <li><a href="#"> <i class="fa fa-envelope"></i> </a></li>
+                            <li><a href="#"> <i class="fa fa-twitter"></i> </a></li>
+                            <li><a href="#"> <i class="ti-linkedin"></i> </a></li>
+                        </ul>
+                    </div>
+                    <a href="#" class="boxed_btn">Buy Course</a>
+                    <div class="feedback_info">
+                        <h3>Write your feedback</h3>
+                        <p>Your rating</p>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+                        <i class="flaticon-mark-as-favorite-star"></i>
+
+                        <form action="#">
+                            <textarea name="" id="" cols="30" rows="10" placeholder="Write your feedback"></textarea>
+                            <button type="submit" class="boxed_btn">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+      }
+
+
+    <script src="~/js/pdf.js"></script>
+    <style>
+    #pdf-viewer {
+        height: 800px;
+    }
+
+    #view-pdf-button,
+    #close-pdf-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+        font-size: 14px;
+        margin-right: 10px;
+    }
+
+        #view-pdf-button:hover,
+        #close-pdf-button:hover {
+            background-color: #0069d9;
+            cursor: pointer;
+        }
+
+   /* Butonların kapsayıcı div'ini ortala */
+    /* Butonların görünümünü düzenleyin */
+    #view-pdf-button, #close-pdf-button {
+        font-size: 14px;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+
+    /* Butonların kapsayıcı div'ini ortala */
+    #view-pdf-button, #close-pdf-button {
+        display: inline-block;
+        margin: 5px 10px;
+        vertical-align: middle;
+    }
+
+    #view-pdf-button {
+        background-color: #1462c9;
+        color: white;
+    }
+
+    #close-pdf-button:hover {
+        background-color: #f64b4b;
+        color: white;
+    }
+
+    #view-pdf-button:hover {
+        background-color: #418bec;
+    }
+
+    #close-pdf-button {
+        background-color: #df0e07;
+        color: rgb(12, 12, 12);
+    }
+
+
+    /* Butonların görünümünü düzenleyin */
+    #view-pdf-button, #close-pdf-button {
+        font-size: 14px;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+
+    /* Butonların kapsayıcı div'ini ortala */
+    #button-container {
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+    }
+
+
+
+    </style>

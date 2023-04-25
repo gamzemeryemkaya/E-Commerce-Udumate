@@ -1,0 +1,397 @@
+﻿@using Microsoft.AspNetCore.Http
+@using CourseBook.Utility;
+@using Microsoft.AspNetCore.Identity
+@inject IHttpContextAccessor HttpContextAccessor
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Udumate</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <!-- CSS here -->
+    <link rel="stylesheet" href="~/edumark-master/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/edumark-master/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/edumark-master/css/magnific-popup.css">
+    <link rel="stylesheet" href="~/edumark-master/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/edumark-master/css/themify-icons.css">
+    <link rel="stylesheet" href="~/edumark-master/css/nice-select.css">
+    <link rel="stylesheet" href="~/edumark-master/css/flaticon.css">
+    <link rel="stylesheet" href="~/edumark-master/css/gijgo.css">
+    <link rel="stylesheet" href="~/edumark-master/css/animate.css">
+    <link rel="stylesheet" href="~/edumark-master/css/slicknav.css">
+    <link rel="stylesheet" href="~/edumark-master/css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <style>
+        ul.navbar-nav {
+            display: flex;
+        }
+
+        .nav-link {
+            padding: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .navbar-nav li:nth-last-child(-n+3) {
+            margin-left: auto;
+        }
+
+        .log_chat_area a {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .divider {
+            margin: 0;
+            border: none;
+            height: 1px;
+            background-color: black;
+            width: 100%;
+        }
+
+
+
+
+    </style>
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+    <!-- header-start -->
+    <header>
+        <div class="header-area">
+            <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="index.html">
+                                    <img src="~/edumark-master/img/son.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-7">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                       
+                                        <li><a asp-area="Customer" asp-controller="CustomerHome" asp-action="Index">Home</a></li>
+                                        @if (User.IsInRole(SD.Role_Admin))
+                                        {
+                                            <li>
+                                                <a href="#">Content Managment  <i class="ti-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a></li>
+                                                    <li><a asp-area="Admin" asp-controller="CourseFormatType" asp-action="Index">Course Format</a></li>
+                                                    <li><a asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a></li>
+                                                    <div class="dropdown-divider"></div>
+                                                    <li><a asp-area="Admin" asp-controller="Instructor" asp-action="Index">Instructor</a></li>
+                                                    <li><a asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a></li>
+                                                    <div class="dropdown-divider"></div>
+                                                    <li><a asp-area="Identity" asp-page="/Account/Register">Create User</a></li>
+                                                  
+                                                </ul>
+                                            </li>
+
+                                        }
+                                        <li>
+                                            <a asp-area="Admin" asp-controller="Order" asp-action="Index">Manager Order</a>
+                                        </li> 
+                                             <li>
+                                            <a asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                                                @await Component.InvokeAsync("ShoppingCart")
+                                            </a>
+
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                            <div class="log_chat_area d-flex align-items-center main-menu">
+                                
+                              @if (SignInManager.IsSignedIn(User))
+                                {
+                                    <div class="live_chat_btn">
+                                        <a id="manage" class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                                    </div>
+                                    <div class="live_chat_btn">
+                                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "CustomerHome", new { area = "Customer" })">
+                                            <button id="logout" type="submit" class="nav-link btn btn-link text-white">Logout</button>
+                                        </form>
+                                    </div>
+                                }
+                                else
+                                 {
+                                    <div class="live_chat_btn">
+                                        <a class="nav-link text-white" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                    </div>
+
+                                    <div class="live_chat_btn">
+                                        <a class="nav-link text-white" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                         </div>
+                     
+               
+                    </div>
+                </div>
+            </div>
+    </header>
+
+    <!-- header-end -->
+    <!-- slider_area_start -->
+    <div class="slider_area ">
+        <div class="single_slider d-flex align-items-center justify-content-center slider_bg_1">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-6 col-md-6">
+                        <div class="illastrator_png">
+                            <img src="~/edumark-master/img/banner/edu_ilastration.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <div class="slider_info">
+                            <h3>
+                                Discover and Master
+
+                                 Your Favorite
+                                 Courses Online
+                              
+                            </h3>
+                            <a href="#" class="boxed_btn">Browse Our Courses</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider_area_end -->
+    <!-- about_area_start -->
+    <!-- about_area_end -->
+    <!-- popular_courses_start -->
+    @RenderBody()
+    <!-- popular_courses_end-->
+    <!-- testimonial_area_start -->
+    <!-- testimonial_area_end -->
+    <!-- our_courses_start -->
+    <!-- our_courses_end -->
+    <!-- subscribe_newsletter_Start -->
+    <!-- subscribe_newsletter_end -->
+    <!-- our_latest_blog_start -->
+    <!-- our_latest_blog_end -->
+    <!-- footer -->
+    <footer class="footer footer_bg_1">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-md-6 col-lg-4">
+                        <div class="footer_widget">
+                            <div class="footer_logo">
+                                <a href="#">
+                                    <img src="img/logo.png" alt="">
+                                </a>
+                            </div>
+                            <p>
+                                Firmament morning sixth subdue darkness creeping gathered divide our let god moving.
+                                Moving in fourth air night bring upon it beast let you dominion likeness open place day
+                                great.
+                            </p>
+                            <div class="socail_links">
+                                <ul>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ti-twitter-alt"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-youtube-play"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Courses
+                            </h3>
+                            <ul>
+                                <li><a href="#">Wordpress</a></li>
+                                <li><a href="#"> Photoshop</a></li>
+                                <li><a href="#">Illustrator</a></li>
+                                <li><a href="#">Adobe XD</a></li>
+                                <li><a href="#">UI/UX</a></li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6 col-lg-2">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Resourches
+                            </h3>
+                            <ul>
+                                <li><a href="#">Free Adobe XD</a></li>
+                                <li><a href="#">Tutorials</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#"> About</a></li>
+                                <li><a href="#"> Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-6 col-lg-3">
+                        <div class="footer_widget">
+                            <h3 class="footer_title">
+                                Address
+                            </h3>
+                            <p>
+                                200, D-block, Green lane USA <br>
+                                +10 367 467 8934 <br>
+                                edumark@contact.com
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-right_text">
+            <div class="container">
+                <div class="footer_border"></div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <p class="copy_right text-center">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer -->
+    <!-- form itself end-->
+    <form id="test-form" class="white-popup-block mfp-hide">
+        <div class="popup_box ">
+            <div class="popup_inner">
+                <div class="logo text-center">
+                    <a href="#">
+                        <img src="img/form-logo.png" alt="">
+                    </a>
+                </div>
+                <h3>Sign in</h3>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12">
+                            <input type="email" placeholder="Enter email">
+                        </div>
+                        <div class="col-xl-12 col-md-12">
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <div class="col-xl-12">
+                            <button type="submit" class="boxed_btn_orange">Sign in</button>
+                        </div>
+                    </div>
+                </form>
+                <p class="doen_have_acc">
+                    Don’t have an account? <a class="dont-hav-acc" href="#test-form2">Sign Up</a>
+                </p>
+            </div>
+        </div>
+    </form>
+    <!-- form itself end -->
+    <!-- form itself end-->
+    <form id="test-form2" class="white-popup-block mfp-hide">
+        <div class="popup_box ">
+            <div class="popup_inner">
+                <div class="logo text-center">
+                    <a href="#">
+                        <img src="img/form-logo.png" alt="">
+                    </a>
+                </div>
+                <h3>Resistration</h3>
+                <form action="#">
+                    <div class="row">
+                        <div class="col-xl-12 col-md-12">
+                            <input type="email" placeholder="Enter email">
+                        </div>
+                        <div class="col-xl-12 col-md-12">
+                            <input type="password" placeholder="Password">
+                        </div>
+                        <div class="col-xl-12 col-md-12">
+                            <input type="Password" placeholder="Confirm password">
+                        </div>
+                        <div class="col-xl-12">
+                            <button type="submit" class="boxed_btn_orange">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+    <!-- form itself end -->
+    <!-- JS here -->
+    <script src="~/edumark-master/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="~/edumark-master/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="~/edumark-master/js/popper.min.js"></script>
+    <script src="~/edumark-master/js/bootstrap.min.js"></script>
+    <script src="~/edumark-master/js/owl.carousel.min.js"></script>
+    <script src="~/edumark-master/js/isotope.pkgd.min.js"></script>
+    <script src="~/edumark-master/js/ajax-form.js"></script>
+    <script src="~/edumark-master/js/waypoints.min.js"></script>
+    <script src="~/edumark-master/js/jquery.counterup.min.js"></script>
+    <script src="~/edumark-master/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/edumark-master/js/scrollIt.js"></script>
+    <script src="~/edumark-master/js/jquery.scrollUp.min.js"></script>
+    <script src="~/edumark-master/js/wow.min.js"></script>
+    <script src="~/edumark-master/js/nice-select.min.js"></script>
+    <script src="~/edumark-master/js/jquery.slicknav.min.js"></script>
+    <script src="~/edumark-master/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/edumark-master/js/plugins.js"></script>
+    <script src="~/edumark-master/js/gijgo.min.js"></script>
+
+    <!--contact js-->
+    <script src="~/edumark-master/js/contact.js"></script>
+    <script src="~/edumark-master/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/edumark-master/js/jquery.form.js"></script>
+    <script src="~/edumark-master/js/jquery.validate.min.js"></script>
+    <script src="~/edumark-master/js/mail-script.js"></script>
+
+    <script src="~/edumark-master/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
