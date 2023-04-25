@@ -48,6 +48,9 @@ This project is developed using MSSQL and utilizes a code-first approach with En
 ## Admin-Role(Create Register)
 ![App-Screenshots](https://github.com/gamzemeryemkaya/E-Commerce-Udumate/blob/main/E-Ticaret%20Uygulamas%C4%B1/images/role.png?raw=true)
 
+## Facebook Register
+![App-Screenshots](https://github.com/gamzemeryemkaya/E-Commerce-Udumate/blob/main/E-Ticaret%20Uygulamas%C4%B1/images/register.png?raw=true)
+
 ## Login
 ![App-Screenshots](https://github.com/gamzemeryemkaya/E-Commerce-Udumate/blob/main/E-Ticaret%20Uygulamas%C4%B1/images/login.png?raw=true)
 
